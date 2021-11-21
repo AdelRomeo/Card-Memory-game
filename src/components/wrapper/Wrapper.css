@@ -1,0 +1,7 @@
+.Wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    background: cornflowerblue;
+    margin: auto;
+}
