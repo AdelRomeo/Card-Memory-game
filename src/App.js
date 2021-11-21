@@ -1,12 +1,11 @@
 import React from 'react'
 import './App.css'
+import {Wrapper} from './components/wrapper/Wrapper';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        App
-      </header>
+    <div className='App'>
+      <Wrapper/>
     </div>
   );
 }

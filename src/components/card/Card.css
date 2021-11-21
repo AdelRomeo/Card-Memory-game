@@ -1,0 +1,14 @@
+.Card {
+    width: 100px;
+    height: 70px;
+    background: paleturquoise;
+    margin: 10px;
+    transition: transform 1s ease;
+    cursor: pointer;
+}
+
+.Card-roll{
+    transform: scaleX(-1);
+    background: #282c34;
+    color: red;
+}
