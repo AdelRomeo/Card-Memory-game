@@ -1,13 +1,16 @@
 import React from 'react'
 import './App.css'
-import {Wrapper} from './components/wrapper/Wrapper';
+import {Wrapper} from './components/wrapper/Wrapper'
+import CardState from "./context/card/cardState";
 
 function App() {
   return (
-    <div className='App'>
-      <Wrapper/>
-    </div>
-  );
+    <CardState>
+      <div className='App'>
+        <Wrapper/>
+      </div>
+    </CardState>
+  )
 }
 
-export default App;
+export default App
