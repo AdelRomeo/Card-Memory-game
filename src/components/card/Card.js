@@ -1,9 +1,7 @@
 import React, {useState} from 'react'
 import './Card.css'
-import {FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faCoffee} from '@fortawesome/free-solid-svg-icons'
 
-export function Card({getId, index, showCard}) {
+export function Card({getId, index, showCard, children}) {
 
   const [styleCard, setStyleCard] = useState('Card')
 
@@ -20,7 +18,7 @@ export function Card({getId, index, showCard}) {
 
   return(
     <div className={styleCard} onClick={cardRoll}>
-      <FontAwesomeIcon icon={faCoffee}/>
+      {children}
     </div>
   )
 }
