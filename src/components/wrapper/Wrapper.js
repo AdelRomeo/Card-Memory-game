@@ -1,27 +1,32 @@
 import React, {useEffect, useState} from 'react'
 import './Wrapper.css'
 import {Card} from '../card/Card'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { fa0, fa1, fa2, fa3, fa4, fa5, fa6, fa7, fa8, fa9 } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {fa0, fa1, fa2, fa3, fa4, fa5, fa6, fa7, fa8, fa9} from '@fortawesome/free-solid-svg-icons'
 
 export function Wrapper() {
 
-  const arr = [fa0, fa1, fa2, fa3, fa4, fa5, fa6, fa7, fa8, fa9 ]
+  let cls = 'Card'
 
-  const [idCard, setIdCard] = useState(1)
-
-  const [showCard, setShowCard] = useState(false)
+  const arr = [fa0, fa1, fa2, fa3, fa4, fa5, fa6, fa7, fa8, fa9, fa0, fa1, fa2, fa3, fa4, fa5, fa6, fa7, fa8, fa9]
 
   const [listCard, setListCard] = useState(arr)
 
-  const getId = (id) => {
-    if (id === idCard) {
-      //проверка на одинаковость карт
-      //setShowCard(true)
-      console.log('yes')
+  const [activeCards, setActiveCards] = useState([])
+
+  const flipCard = (idCard) => {
+
+    if (activeCards.length < 2) {
+      setActiveCards(activeCards.concat(idCard))
+
+      if (activeCards.length === 1) {
+        setTimeout(() => {
+          setActiveCards([])
+        }, 700)
+      }
     }
-    setIdCard(id)
-    console.log(id)
+
+    console.log(activeCards)
   }
 
   //случайный порядок карточек
@@ -35,7 +40,7 @@ export function Wrapper() {
 
   //генерация карточек
   const createCardList = () => {
-    const shuffledArray = [...shuffleArray(arr), ...shuffleArray(arr)]
+    const shuffledArray = [...shuffleArray(arr)]
     setListCard(shuffledArray)
   }
 
@@ -47,9 +52,15 @@ export function Wrapper() {
     <article className='Wrapper'>
       {listCard.map((item, index) => {
         return (
-          <Card index={item} getId={getId} showCard={showCard}>
+          <div
+            className={cls}
+            key={index}
+            onClick={() => {
+              flipCard(item)
+            }}
+          >
             <FontAwesomeIcon icon={listCard[index]}/>
-          </Card>
+          </div>
         )
       })}
     </article>
