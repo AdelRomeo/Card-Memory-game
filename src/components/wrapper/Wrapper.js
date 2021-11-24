@@ -5,29 +5,14 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {fa0, fa1, fa2, fa3, fa4, fa5, fa6, fa7, fa8, fa9} from '@fortawesome/free-solid-svg-icons'
 
 export function Wrapper() {
-
-  let cls = 'Card'
-
+  //картинки
   const arr = [fa0, fa1, fa2, fa3, fa4, fa5, fa6, fa7, fa8, fa9, fa0, fa1, fa2, fa3, fa4, fa5, fa6, fa7, fa8, fa9]
-
-  const [listCard, setListCard] = useState(arr)
-
-  const [activeCards, setActiveCards] = useState([])
-
-  const flipCard = (idCard) => {
-
-    if (activeCards.length < 2) {
-      setActiveCards(activeCards.concat(idCard))
-
-      if (activeCards.length === 1) {
-        setTimeout(() => {
-          setActiveCards([])
-        }, 700)
-      }
-    }
-
-    console.log(activeCards)
-  }
+  //перемешанный массив картинок
+  const [listCards, setListCards] = useState(arr)
+  //выбранные картинки
+  const [listActiveCards, setListActiveCards] = useState([])
+  //результат карточек
+  const [resultsFlips, setResultsFlip] = useState(false)
 
   //случайный порядок карточек
   const shuffleArray = (array) => {
@@ -41,26 +26,39 @@ export function Wrapper() {
   //генерация карточек
   const createCardList = () => {
     const shuffledArray = [...shuffleArray(arr)]
-    setListCard(shuffledArray)
+    setListCards(shuffledArray)
   }
 
   useEffect(() => {
     createCardList()
   }, [])
 
+  // useEffect(() => {
+  //   getCheckSumCard(listActiveCards)
+  // }, [listActiveCards])
+
+  const addActiveCard = (id) => {
+    setListActiveCards(listActiveCards => listActiveCards.concat(id))
+  }
+
+  const getCheckSumCard = (list) => {
+    let check = false
+    if (list.length > 1) {
+      if (list[0] === list[1]) {
+        check = true
+      }
+    }
+    return check
+  }
+
   return (
     <article className='Wrapper'>
-      {listCard.map((item, index) => {
+      {getCheckSumCard(listActiveCards)}
+      {listCards.map((item, index) => {
         return (
-          <div
-            className={cls}
-            key={index}
-            onClick={() => {
-              flipCard(item)
-            }}
-          >
-            <FontAwesomeIcon icon={listCard[index]}/>
-          </div>
+          <Card key={index} addActiveCard={addActiveCard} index={item} listActiveCards={listActiveCards}>
+            <FontAwesomeIcon icon={listCards[index]}/>
+          </Card>
         )
       })}
     </article>
