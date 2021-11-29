@@ -1,7 +1,9 @@
 .card {
-    perspective: 1000px;
+    box-sizing: border-box;
     cursor: pointer;
     margin: 10px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .card, .front, .back {
@@ -27,8 +29,13 @@
 }
 
 .front {
+    transition: background-color 300ms ease-in-out;
     z-index: 2;
-    background: paleturquoise;
+    background: #afeeee;
+}
+
+.front:hover {
+    background: #7cf3f3;
 }
 
 .back {

@@ -1,18 +1,25 @@
 import React, {useEffect, useState} from 'react'
 import './Wrapper.css'
 import {Card} from '../card/Card'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird} from '@fortawesome/free-solid-svg-icons'
+import {Backdrop} from "../backdrop/Backdrop";
 
 export function Wrapper() {
   //картинки
-  const arr = [faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird, faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird]
+  const arrImg = [faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird, faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird]
   //перемешанный массив картинок
-  const [listCards, setListCards] = useState(arr)
+  const [listCards, setListCards] = useState(arrImg)
   //открытые карточки
   const [activeCards, setActiveCard] = useState([])
   //список совпавших карточек
   const [openCards, setOpenCards] = useState([])
+  //запрет лишних кликов на время открытия двух краточек
+  const [showBackdrop, setShowBackdrop] = useState(false)
+
+  let backdropStyles = {
+    zIndex: 2,
+    opacity: 0.3
+  }
 
   //случайный порядок карточек
   const shuffleArray = (array) => {
@@ -25,7 +32,7 @@ export function Wrapper() {
 
   //генерация карточек
   const createCardList = () => {
-    const shuffledArray = [...shuffleArray(arr)]
+    const shuffledArray = [...shuffleArray(arrImg)]
     setListCards(shuffledArray)
   }
 
@@ -39,15 +46,24 @@ export function Wrapper() {
     //вторая карточка по которой кликнули
     let secondActiveCard = listCards[activeCards[1]]
 
-    //если карточек 2 и они одинаковые
-    if (secondActiveCard && firstActiveCard === secondActiveCard) {
-      //добавляем в активные карточки первую карточку по которой кликнули
-      setOpenCards(openCards => [...openCards, firstActiveCard, secondActiveCard])
+    //если не одна и та же карточка
+    if (activeCards[0] !== activeCards[1]) {
+      //если карточек 2 и они одинаковые
+      if (secondActiveCard && firstActiveCard === secondActiveCard) {
+        //добавляем в активные карточки первую карточку по которой кликнули
+        setOpenCards(openCards => [...openCards, firstActiveCard, secondActiveCard])
+      } else {
+      }
     }
 
     //если 2 или больше карточек - очищаем список отрытых карточек
     if (activeCards.length > 1) {
+      //блокировка блокировка кликов
+      setShowBackdrop(true)
       setTimeout(()=>{
+        //разблокировка кликов
+        setShowBackdrop(false)
+        //очистка списка открытых карточек
         setActiveCard([])
       }, 1500)
     }
@@ -82,6 +98,7 @@ export function Wrapper() {
             />
           )
       })}
+      <Backdrop style={showBackdrop ? backdropStyles : null}/>
     </article>
   )
 }
