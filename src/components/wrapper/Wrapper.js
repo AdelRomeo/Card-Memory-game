@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react'
 import './Wrapper.css'
 import {Card} from '../card/Card'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {fa0, fa1, fa2, fa3, fa4, fa5, fa6, fa7, fa8, fa9} from '@fortawesome/free-solid-svg-icons'
+import {faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird} from '@fortawesome/free-solid-svg-icons'
 
 export function Wrapper() {
   //картинки
-  const arr = [fa0, fa1, fa2, fa3, fa4, fa5, fa6, fa7, fa8, fa9, fa0, fa1, fa2, fa3, fa4, fa5, fa6, fa7, fa8, fa9]
+  const arr = [faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird, faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird]
   //перемешанный массив картинок
   const [listCards, setListCards] = useState(arr)
   //открытые карточки
@@ -65,7 +65,7 @@ export function Wrapper() {
   }
 
   return (
-    <article className='Wrapper'>
+    <article className='wrapper'>
       {listCards.map((item, i) => {
         let isFlip = false
         //если карточка та по которой кликнули
@@ -73,13 +73,13 @@ export function Wrapper() {
         //если карточка из списка совпаших
         if (openCards.includes(item)) isFlip = true
           return (
-            <div
+            <Card
               key={i}
-              className={`Card ${isFlip ? 'Card-roll' : ''}`}
-              onClick={() => onHandleCard(i)}
-            >
-              <FontAwesomeIcon icon={listCards[i]}/>
-            </div>
+              isFlip={isFlip}
+              onFlipCard={() => onHandleCard(i)}
+              index={i}
+              icon={listCards[i]}
+            />
           )
       })}
     </article>
