@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import './Wrapper.css'
+import './CardContainer.css'
 import {Card} from '../card/Card'
 import {faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird} from '@fortawesome/free-solid-svg-icons'
 import {Backdrop} from "../backdrop/Backdrop";
 
-export function Wrapper() {
+export function CardContainer() {
   //картинки
   const arrImg = [faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird, faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird]
   //перемешанный массив картинок

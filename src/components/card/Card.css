@@ -31,14 +31,14 @@
 .front {
     transition: background-color 300ms ease-in-out;
     z-index: 2;
-    background: #afeeee;
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
 }
 
 .front:hover {
-    background: #7cf3f3;
+    background: radial-gradient(circle, rgba(235,174,238,1) 0%, rgba(148,233,233,1) 100%);
 }
 
 .back {
     transform: rotateY(180deg);
-    color: #282c34;
+    color: red;
 }

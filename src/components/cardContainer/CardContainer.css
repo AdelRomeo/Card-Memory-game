@@ -1,0 +1,9 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    background: linear-gradient(90deg, rgb(27, 18, 158) 0%, rgba(0,0,255,1) 0%, rgba(0,212,255,1) 100%);
+    margin: auto;
+    border-radius: 10px;
+}
