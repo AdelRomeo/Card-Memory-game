@@ -4,7 +4,7 @@ import {Card} from '../card/Card'
 import {faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird} from '@fortawesome/free-solid-svg-icons'
 import {Backdrop} from '../backdrop/Backdrop'
 
-export function CardContainer({getWinStatus, reloadGame}) {
+export function CardContainer({getWinStatus, statusGame}) {
   //картинки
   const arrImg = [faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird, faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird]
   //перемешанный массив картинок
@@ -38,7 +38,7 @@ export function CardContainer({getWinStatus, reloadGame}) {
 
   useEffect(() => {
     createCardList()
-  }, [reloadGame])
+  }, [statusGame])
 
   useEffect(()=>{
     //первая карточка по которой кликнули
