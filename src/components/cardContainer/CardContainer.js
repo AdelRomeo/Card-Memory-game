@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react'
 import './CardContainer.css'
 import {Card} from '../card/Card'
 import {faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird} from '@fortawesome/free-solid-svg-icons'
-import {Backdrop} from "../backdrop/Backdrop";
+import {Backdrop} from '../backdrop/Backdrop'
 
-export function CardContainer() {
+export function CardContainer({getWinStatus, reloadGame}) {
   //картинки
   const arrImg = [faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird, faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird]
   //перемешанный массив картинок
@@ -38,7 +38,7 @@ export function CardContainer() {
 
   useEffect(() => {
     createCardList()
-  }, [])
+  }, [reloadGame])
 
   useEffect(()=>{
     //первая карточка по которой кликнули
@@ -70,14 +70,17 @@ export function CardContainer() {
 
   } , [activeCards])
 
+  useEffect(()=> {
+    if (openCards.length === listCards.length) {
+      getWinStatus(true)
+    }
+  }, [openCards])
+
   //клик по карточке
   const onHandleCard = (idCard) => {
     //добавляем в список открытых карточек, карточку по которой кликнули
     setActiveCard(activeCards => [...activeCards, idCard])
-    console.log(openCards)
-    if (openCards.length === listCards.length) {
-      console.log('game over')
-    }
+    console.log(openCards.length, listCards.length)
   }
 
   return (
