@@ -4,7 +4,7 @@ import {Card} from '../card/Card'
 import {faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird} from '@fortawesome/free-solid-svg-icons'
 import {Backdrop} from '../backdrop/Backdrop'
 
-export function CardContainer({getWinStatus, statusGame}) {
+export function CardContainer({getWinStatus, newGame}) {
   //картинки
   const arrImg = [faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird, faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird]
   //перемешанный массив картинок
@@ -37,10 +37,18 @@ export function CardContainer({getWinStatus, statusGame}) {
   }
 
   useEffect(() => {
-    createCardList()
-  }, [statusGame])
+    //очистка списка открытых карточек
+    setActiveCard([])
+    //очистка списка совпавших карточек
+    setOpenCards([])
+    setTimeout(()=> {
+      //загрузка новых карточек
+      createCardList()
+    }, 1000)
+  }, [newGame])
 
-  useEffect(()=>{
+
+  useEffect(() => {
     //первая карточка по которой кликнули
     let firstActiveCard = listCards[activeCards[0]]
     //вторая карточка по которой кликнули
@@ -60,18 +68,18 @@ export function CardContainer({getWinStatus, statusGame}) {
     if (activeCards.length > 1) {
       //блокировка блокировка кликов
       setShowBackdrop(true)
-      setTimeout(()=>{
+      setTimeout(() => {
         //разблокировка кликов
         setShowBackdrop(false)
         //очистка списка открытых карточек
         setActiveCard([])
       }, 1500)
     }
+  }, [activeCards])
 
-  } , [activeCards])
-
-  useEffect(()=> {
+  useEffect(() => {
     if (openCards.length === listCards.length) {
+      //победа в игре
       getWinStatus(true)
     }
   }, [openCards])
@@ -80,7 +88,6 @@ export function CardContainer({getWinStatus, statusGame}) {
   const onHandleCard = (idCard) => {
     //добавляем в список открытых карточек, карточку по которой кликнули
     setActiveCard(activeCards => [...activeCards, idCard])
-    console.log(openCards.length, listCards.length)
   }
 
   return (
@@ -91,15 +98,15 @@ export function CardContainer({getWinStatus, statusGame}) {
         if (activeCards.includes(i)) isFlip = true
         //если карточка из списка совпаших
         if (openCards.includes(item)) isFlip = true
-          return (
-            <Card
-              key={i}
-              isFlip={isFlip}
-              onFlipCard={() => onHandleCard(i)}
-              index={i}
-              icon={listCards[i]}
-            />
-          )
+        return (
+          <Card
+            key={i}
+            isFlip={isFlip}
+            onFlipCard={() => onHandleCard(i)}
+            index={i}
+            icon={listCards[i]}
+          />
+        )
       })}
       <Backdrop style={showBackdrop ? backdropStyles : null}/>
     </article>
