@@ -7,7 +7,7 @@ export function Card({isFlip, onFlipCard, index, icon}) {
   return (
     <div className='card' onClick={()=>{onFlipCard(index)}}>
       <div className={`flipper ${isFlip ? 'card-reverse' : ''}`}>
-        {/*<div className='front'/>*/}
+        <div className='front'/>
         <FontAwesomeIcon icon={icon} className='back'/>
       </div>
     </div>

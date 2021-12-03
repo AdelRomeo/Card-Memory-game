@@ -8,7 +8,11 @@
 }
 
 .win-message-container{
-    margin-top: 200px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    margin: 200px auto 0;
     animation-duration: 2s;
     animation-name: move;
     animation-delay: -1s;
@@ -18,11 +22,13 @@
     font-size: 40px;
 }
 
-.win-message-try_again{
-    background: none;
-    border: none;
+.win-message-new_game{
+    position: absolute;
+    right: -80px;
+    top: -15px;
     color: paleturquoise;
     cursor: pointer;
+    font-size: 20px;
 }
 
 @keyframes move {

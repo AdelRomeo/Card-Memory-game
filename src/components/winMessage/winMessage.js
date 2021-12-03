@@ -1,12 +1,15 @@
 import React from 'react'
 import './winMessage.css'
-export function WinMessage({reloadGame}) {
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faClose} from '@fortawesome/free-solid-svg-icons'
+
+export function WinMessage({closeMessage}) {
 
   return (
-    <div className='win-message'>
+    <div className='win-message' onClick={() => closeMessage()}>
       <div className='win-message-container'>
         <p className='win-message-title'>Congratulation! You win in the game</p>
-        <button className='win-message-try_again' onClick={()=>reloadGame(false)}>try again</button>
+        <FontAwesomeIcon className='win-message-new_game' icon={faClose}/>
       </div>
     </div>
   )
