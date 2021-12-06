@@ -1,0 +1,18 @@
+.game-list {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 300px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: rgba(0,0,0, 0.3);
+}
+
+.game-list_selector {
+    border: none;
+    background: cornflowerblue;
+    margin: 50px 20px 0;
+    height: 200px;
+    cursor: pointer;
+}

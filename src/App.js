@@ -4,6 +4,7 @@ import WebFont from 'webfontloader'
 import {CardContainer} from './components/cardContainer/CardContainer'
 import {Rules} from './components/rules/Rules'
 import {WinMessage} from './components/winMessage/winMessage'
+import {GameList} from './components/gameList/GameList'
 
 function App() {
 
@@ -33,10 +34,13 @@ function App() {
 
   return (
     <div className='App'>
-      <Rules/>
-      <h1 className='title'>Card memory game</h1>
-      <CardContainer newGame={newGame} getWinStatus={onHandlerStatusGame}/>
-      {winGame ? <WinMessage closeMessage={onHandlerReloadGame}/> : null}
+      <GameList/>
+      <div>
+        <Rules/>
+        <h1 className='title'>Card memory game</h1>
+        <CardContainer newGame={newGame} getWinStatus={onHandlerStatusGame}/>
+        {winGame ? <WinMessage closeMessage={onHandlerReloadGame}/> : null}
+      </div>
     </div>
   );
 }

@@ -4,9 +4,11 @@ import {Card} from '../card/Card'
 import {faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird} from '@fortawesome/free-solid-svg-icons'
 import {Backdrop} from '../backdrop/Backdrop'
 
-export function CardContainer({getWinStatus, newGame}) {
-  //картинки
-  const arrImg = [faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird, faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird]
+export function CardContainer({getWinStatus, newGame, lengthGame}) {
+  //начальные картинки
+  const srcImg = [faCat, faDog, faCrow, faDove, faDragon, faFish, faFrog, faHippo, faHorse, faKiwiBird]
+  //нужное количество картинок
+  const arrImg = [...srcImg.slice(0, lengthGame || srcImg.length), ...srcImg.slice(0, lengthGame || srcImg.length)]
   //перемешанный массив картинок
   const [listCards, setListCards] = useState(arrImg)
   //открытые карточки
