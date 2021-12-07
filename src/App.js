@@ -12,6 +12,8 @@ function App() {
   const [winGame, setWinGame] = useState(false)
   //перезагрузка игры
   const [newGame, setNewGame] = useState(false)
+  //количество карточек для игры
+  const [lengthGame, setLengthGame] = useState(null)
 
   useEffect(() => {
     WebFont.load({
@@ -32,13 +34,18 @@ function App() {
     setWinGame(winGame => !winGame)
   }
 
+  //выбор игры
+  const selectGame = (lvl) => {
+    setLengthGame(lvl)
+  }
+
   return (
     <div className='App'>
-      <GameList/>
+      <GameList selectGame={selectGame}/>
       <div>
         <Rules/>
         <h1 className='title'>Card memory game</h1>
-        <CardContainer newGame={newGame} getWinStatus={onHandlerStatusGame}/>
+        <CardContainer lengthGame={lengthGame} newGame={newGame} getWinStatus={onHandlerStatusGame}/>
         {winGame ? <WinMessage closeMessage={onHandlerReloadGame}/> : null}
       </div>
     </div>
