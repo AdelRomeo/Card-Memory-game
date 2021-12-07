@@ -17,6 +17,10 @@ export function CardContainer({getWinStatus, newGame, lengthGame}) {
   const [openCards, setOpenCards] = useState([])
   //запрет лишних кликов на время открытия двух краточек
   const [showBackdrop, setShowBackdrop] = useState(false)
+  //изменение ширины контайнера
+  const [widthWrapper, setWidthWrapper] = useState('600px')
+  //показ лоадера
+  const [showLoader, setShowLoader] = useState(false)
 
   let backdropStyles = {
     zIndex: 2,
@@ -39,15 +43,25 @@ export function CardContainer({getWinStatus, newGame, lengthGame}) {
   }
 
   useEffect(() => {
+    setShowLoader(true)
     //очистка списка открытых карточек
     setActiveCard([])
     //очистка списка совпавших карточек
     setOpenCards([])
     setTimeout(()=> {
+      //проверка загруженной игры и изменение ширины контайнера
+      if (lengthGame === 3) {
+        setWidthWrapper('360px')
+      } else if (lengthGame === 6) {
+        setWidthWrapper('480px')
+      } else {
+        setWidthWrapper('600px')
+      }
       //загрузка новых карточек
       createCardList()
-    }, 1000)
-  }, [newGame])
+      setShowLoader(false)
+    }, 500)
+  }, [newGame, lengthGame])
 
 
   useEffect(() => {
@@ -93,7 +107,8 @@ export function CardContainer({getWinStatus, newGame, lengthGame}) {
   }
 
   return (
-    <article className='wrapper'>
+    <article className='wrapper' style={{width: widthWrapper}}>
+      {showLoader ? <p className='wrapper_loading'>Loading...</p> : null}
       {listCards.map((item, i) => {
         let isFlip = false
         //если карточка та по которой кликнули

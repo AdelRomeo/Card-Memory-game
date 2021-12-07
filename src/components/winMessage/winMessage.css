@@ -10,7 +10,7 @@
 .win-message-container{
     position: relative;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     width: max-content;
     margin: 200px auto 0;
     animation-duration: 2s;
@@ -20,15 +20,17 @@
 
 .win-message-title{
     font-size: 40px;
+    margin-left: 300px;
 }
 
-.win-message-new_game{
-    position: absolute;
-    right: -80px;
-    top: -15px;
+.win-message_new-game {
+    border: none;
+    background: none;
+    font-family: 'Amatic SC', cursive;
     color: paleturquoise;
-    cursor: pointer;
     font-size: 20px;
+    margin-left: 300px;
+    cursor: pointer;
 }
 
 @keyframes move {
