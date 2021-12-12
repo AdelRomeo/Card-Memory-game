@@ -61,6 +61,7 @@ export function CardContainer({getWinStatus, newGame, lengthGame}) {
       createCardList()
       setShowLoader(false)
     }, 500)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newGame, lengthGame])
 
 
@@ -91,6 +92,7 @@ export function CardContainer({getWinStatus, newGame, lengthGame}) {
         setActiveCard([])
       }, 1500)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeCards])
 
   useEffect(() => {
@@ -98,6 +100,7 @@ export function CardContainer({getWinStatus, newGame, lengthGame}) {
       //победа в игре
       getWinStatus(true)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [openCards])
 
   //клик по карточке
