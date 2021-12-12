@@ -7,9 +7,17 @@
   color: #afeeee;
   padding: 100px 0 0 300px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .title {
   font-size: 40px;
   margin-bottom: 10px;
+}
+
+@media screen and (max-width: 900px){
+
+  .App {
+    padding-left: 0;
+  }
 }

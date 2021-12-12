@@ -7,6 +7,15 @@
     display: flex;
     flex-direction: column;
     background: rgba(0, 0, 0, 0.3);
+    transition: top 1s ease;
+}
+
+.game-list_show {
+    top: 0 !important;
+}
+
+.game-list_hide {
+    top: -100vh !important;
 }
 
 .game-list_title{
@@ -32,4 +41,31 @@
 .game-list_img:hover {
     width: 220px;
     height: 110px;
+}
+
+.game-list_arrow-down {
+    position: absolute;
+    bottom: -35px;
+    left: calc(50% - 16px);
+    cursor: pointer;
+}
+
+.game-list_arrow-up {
+    position: absolute;
+    top: 0;
+    left: -35px;
+    cursor: pointer;
+}
+
+.game-list_arrow-down:hover, .game-list_arrow-up:hover{
+    color: #70e0e0;
+}
+
+@media screen and (max-width: 900px){
+
+    .game-list {
+        left: calc(50% - 150px);
+        top: -100vh;
+        z-index: 2;
+    }
 }
