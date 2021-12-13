@@ -47,3 +47,14 @@
         opacity: 1;
     }
 }
+
+@media (max-width: 900px){
+
+    .win-message-title{
+        margin-left: 0;
+    }
+
+    .win-message_new-game {
+        margin-left: 0;
+    }
+}

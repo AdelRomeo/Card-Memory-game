@@ -15,9 +15,16 @@
   margin-bottom: 10px;
 }
 
-@media screen and (max-width: 900px){
+@media (max-width: 900px){
 
   .App {
     padding-left: 0;
+  }
+}
+
+@media (max-width: 481px){
+
+  .title {
+    font-size: 30px;
   }
 }

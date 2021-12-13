@@ -53,7 +53,7 @@
 .game-list_arrow-up {
     position: absolute;
     top: 0;
-    left: -35px;
+    left: -32px;
     cursor: pointer;
 }
 
@@ -61,7 +61,7 @@
     color: #70e0e0;
 }
 
-@media screen and (max-width: 900px){
+@media (max-width: 900px){
 
     .game-list {
         left: calc(50% - 150px);

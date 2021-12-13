@@ -51,7 +51,11 @@ export function CardContainer({getWinStatus, newGame, lengthGame}) {
     setTimeout(()=> {
       //проверка загруженной игры и изменение ширины контайнера
       if (lengthGame === 3) {
-        setWidthWrapper('360px')
+        if (window.innerWidth < 481) {
+          setWidthWrapper('270px')
+        } else {
+          setWidthWrapper('360px')
+        }
       } else if (lengthGame === 6) {
         setWidthWrapper('480px')
       } else {

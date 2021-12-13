@@ -42,3 +42,11 @@
     transform: rotateY(180deg);
     color: red;
 }
+
+@media (max-width: 481px){
+
+    .card, .front, .back {
+        width: 70px;
+        height: 45px;
+    }
+}
